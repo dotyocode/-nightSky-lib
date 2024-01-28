@@ -1,0 +1,17 @@
+{
+  "name": "@night-sky/angular-lib",
+  "version": "0.0.1",
+  "scripts": {
+    "build:sass": "sass styles/styles.scss assets/styles.css",
+    "build:schematics": "tsc -p tsconfig.schematics.json",
+    "postbuild:schematics": "copyfiles schematics/collection.json ../../../dist/aboudard/ng-lib/"
+   },
+  "peerDependencies": {
+    "@angular/common": "^17.1.0",
+    "@angular/core": "^17.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
