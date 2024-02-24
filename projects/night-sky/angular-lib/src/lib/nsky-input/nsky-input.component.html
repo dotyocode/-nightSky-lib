@@ -1,4 +1,3 @@
-
 <div class="ns-grid">
   <label class="ns-label">{{ text }}</label>
   <input
@@ -8,12 +7,11 @@
     [name]="name"
     [type]="type"
     [maxLength]="maxlength"
+    [value]="selectedItem"
     [max]="max"
     [min]="min"
     class="{{ classCss }}"
+    (input)="onInput($event)"
   />
-  @if (validationInput === 'invalid') {
-  <small class="error-message">{{ messageError }}</small>
-  }
+  <small *ngIf="validationInput === 'invalid'" class="error-message">{{ messageError }}</small>
 </div>
-
