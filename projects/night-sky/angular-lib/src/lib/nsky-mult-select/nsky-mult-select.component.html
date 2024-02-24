@@ -1,0 +1,57 @@
+<div class="custom-select-container" (click)="toggleDropdown()" #selectRef>
+  <div class="input-container">
+    <input
+      type="text"
+      class="{{ classCss }} {{
+        selectedItem.length > 18 ? 'ellipsis-text' : ''
+      }}"
+      [value]="selectedItem"
+      placeholder="Selecione um item"
+      (change)="toggleDropdown()"
+    />
+
+    <div class="select-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-chevron-down"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+        />
+      </svg>
+    </div>
+  </div>
+
+  @if (showDropdown) {
+  <ul class="{{ classCssDropDown }}">
+    <li class="ns-listItem">
+      <input
+        type="checkbox"
+        id="selectAllCheckbox"
+        [checked]="areAllItemsSelected()"
+        (change)="toggleSelectAll($event)"
+      />
+      <label for="selectAllCheckbox">{{ selectAllText }}</label>
+    </li>
+
+    @for (item of data; track item.id) {
+    <li class="ns-listItem">
+      <input
+        type="checkbox"
+        id="{{ 'checkbox_' + item.id }}"
+        [checked]="isSelected(item)"
+        (change)="toggleSelection(item)"
+      />
+      <label for="{{ 'checkbox_' + item.id }}">
+        {{ item[dataOption] }}
+      </label>
+    </li>
+    }
+  </ul>
+  }
+</div>

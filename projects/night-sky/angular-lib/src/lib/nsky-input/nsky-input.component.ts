@@ -14,6 +14,7 @@ export class NskyInputComponent {
   classCss: string = 'input-text';
 
   @Input() text: string = '';
+  @Input() initialTitle: string = '';
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() id: string = '';

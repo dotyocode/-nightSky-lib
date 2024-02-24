@@ -216,3 +216,13 @@
   margin-bottom: 5px;
   font-weight: 400;
 }
+
+
+.ns-listItem {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.ns-listItem:hover {
+  background: var(--grey-400);
+}
