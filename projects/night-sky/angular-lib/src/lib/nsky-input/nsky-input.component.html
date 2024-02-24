@@ -1,0 +1,17 @@
+<div class="ns-grid">
+  <label class="ns-label">{{ text }}</label>
+  <input
+    placeholder="{{ placeholder }}"
+    [attr.disabled]="disabled ? true : null"
+    [id]="id"
+    [name]="name"
+    [type]="type"
+    [maxLength]="maxlength"
+    [max]="max"
+    [min]="min"
+    class="{{ classCss }}"
+  />
+  @if (validationInput === 'invalid') {
+    <small class="error-message">{{ messageError }}</small>
+  }
+</div>
