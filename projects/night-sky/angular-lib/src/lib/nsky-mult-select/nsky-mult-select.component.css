@@ -76,7 +76,6 @@
   z-index: 99999 !important;
 }
 
-
 .dropdown-list-up {
   border: 1px solid #d9d9d9;
   background: white;
@@ -97,5 +96,19 @@
 }
 
 .ns-listItem label {
-  margin-left: 8px; /* Adjust the value as needed */
+  margin-left: 8px;
+}
+
+.truncate-text {
+  max-width: 90%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  font-size: 14px;
+}
+
+hr {
+  border: 1px solid var(--grey-400);
 }

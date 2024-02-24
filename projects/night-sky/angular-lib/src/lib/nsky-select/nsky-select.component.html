@@ -27,7 +27,7 @@
   @if (showDropdown) {
   <ul class="{{ classCssDropDown }}">
     @for (item of data; track item.id) {
-    <li class="ns-listItem" (click)="selectItem(item); toggleDropdown()">
+    <li class="ns-listItem truncate-text" (click)="selectItem(item); toggleDropdown()" [title]="item[dataOption]">
       {{ item[dataOption] }}
     </li>
     }

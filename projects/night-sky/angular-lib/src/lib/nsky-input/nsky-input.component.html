@@ -13,5 +13,8 @@
     class="{{ classCss }}"
     (input)="onInput($event)"
   />
-  <small *ngIf="validationInput === 'invalid'" class="error-message">{{ messageError }}</small>
+  @if(validationInput === 'invalid') {
+    <small  class="error-message">{{ messageError }}</small>
+  }
+
 </div>

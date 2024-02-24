@@ -2,12 +2,11 @@
   <div class="input-container">
     <input
       type="text"
-      class="{{ classCss }} {{
-        selectedItem.length > 18 ? 'ellipsis-text' : ''
-      }}"
+      class="{{ classCss }}"
       [value]="selectedItem"
       placeholder="Selecione um item"
       (change)="toggleDropdown()"
+      readonly
     />
 
     <div class="select-icon">
@@ -28,30 +27,30 @@
   </div>
 
   @if (showDropdown) {
-  <ul class="{{ classCssDropDown }}">
-    <li class="ns-listItem">
-      <input
-        type="checkbox"
-        id="selectAllCheckbox"
-        [checked]="areAllItemsSelected()"
-        (change)="toggleSelectAll($event)"
-      />
-      <label for="selectAllCheckbox">{{ selectAllText }}</label>
-    </li>
-
-    @for (item of data; track item.id) {
-    <li class="ns-listItem">
-      <input
-        type="checkbox"
-        id="{{ 'checkbox_' + item.id }}"
-        [checked]="isSelected(item)"
-        (change)="toggleSelection(item)"
-      />
-      <label for="{{ 'checkbox_' + item.id }}">
-        {{ item[dataOption] }}
-      </label>
-    </li>
-    }
-  </ul>
+    <ul class="{{ classCssDropDown }}">
+      <li class="ns-listItem">
+        <input
+          type="checkbox"
+          id="selectAllCheckbox"
+          [checked]="areAllItemsSelected()"
+          (change)="toggleSelectAll($event)"
+        />
+        <label for="selectAllCheckbox">{{ selectAllText }}</label>
+      </li>
+      <hr>
+      @for (item of data; track item.id) {
+        <li class="ns-listItem ns-flex">
+          <input
+            type="checkbox"
+            id="{{ 'checkbox_' + item.id }}"
+            [checked]="isSelected(item)"
+            (change)="toggleSelection(item)"
+          />
+          <label for="{{ 'checkbox_' + item.id }}" class="truncate-text" [title]="item[dataOption]">
+            {{ item[dataOption] }}
+          </label>
+        </li>
+      }
+    </ul>
   }
 </div>
