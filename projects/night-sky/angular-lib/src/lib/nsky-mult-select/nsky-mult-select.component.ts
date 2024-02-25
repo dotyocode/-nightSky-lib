@@ -9,13 +9,14 @@ import {
   HostListener,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { NskyCheckComponent } from '../nsky-check/nsky-check.component';
 
 @Component({
   selector: 'nsky-mult-select',
   templateUrl: './nsky-mult-select.component.html',
   styleUrls: ['./nsky-mult-select.component.css'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NskyCheckComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -39,7 +40,7 @@ export class NskyMultSelectComponent {
   showDropdown: boolean = false;
   selectedItem: any = '';
   private selectedItems: any[] = [];
-
+  selectAllChecked: boolean = false;
   //OUTPUTS
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
 
@@ -83,23 +84,40 @@ export class NskyMultSelectComponent {
     }
   }
 
-  toggleSelectAll(event: any): void {
-    const selectAll = event.target.checked;
+  updateAllCheckboxes(): void {
+    const allSelected = this.areAllItemsSelected();
+    this.selectAllChecked = allSelected;
 
-    if (selectAll) {
-      this.selectedItems = [...this.data];
-    } else {
-      this.selectedItems = [];
-    }
+    this.data.forEach((item) => {
+      const index = this.selectedItems.findIndex(
+        (selectedItem) => selectedItem.id === item.id
+      );
 
-    this.selectedItem = this.selectedItems
-      .map((item) => item[this.dataOption])
-      .join(', ');
-    this.onChange(this.selectedItems);
+      if (index === -1 && allSelected) {
+        this.selectedItems.push(item);
+      } else if (index !== -1 && !allSelected) {
+        this.selectedItems.splice(index, 1);
+      }
+    });
   }
 
   areAllItemsSelected(): boolean {
     return this.selectedItems.length === this.data.length;
+  }
+
+  toggleSelectAll(event: any): void {
+    const selectAll = event.target.checked;
+
+    this.selectedItems = selectAll ? [...this.data] : [];
+    this.selectAllChecked = selectAll;
+
+    this.updateAllCheckboxes();
+
+    this.selectedItem = this.selectedItems
+      .map((item) => item[this.dataOption])
+      .join(', ');
+
+    this.onChange(this.selectedItems);
   }
 
   toggleSelection(item: any): void {
@@ -117,6 +135,10 @@ export class NskyMultSelectComponent {
       .map((selectedItem) => selectedItem[this.dataOption])
       .join(', ');
     this.onChange(this.selectedItems);
+
+    if (item.id !== 'selectAll') {
+      this.selectAllChecked = this.areAllItemsSelected();
+    }
   }
 
   isSelected(item: any): boolean {

@@ -1,0 +1,15 @@
+<div class="ns-flex ns-align-itens-center">
+  <input
+    [attr.disabled]="disabled ? true : null"
+    [id]="id"
+    [name]="name"
+    class="{{ classCss }}"
+    type="checkbox"
+    [checked]="checked"
+    (change)="onInput($event)"
+  />
+  <label [for]="id" class="ns-label ns-ml-1 ns-nowrap ns-m-0">{{ text }}</label>
+</div>
+@if(validationInput === 'invalid') {
+<small class="error-message">{{ messageError }}</small>
+}

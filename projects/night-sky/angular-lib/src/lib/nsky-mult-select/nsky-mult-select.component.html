@@ -29,26 +29,26 @@
   @if (showDropdown) {
     <ul class="{{ classCssDropDown }}">
       <li class="ns-listItem">
-        <input
-          type="checkbox"
-          id="selectAllCheckbox"
-          [checked]="areAllItemsSelected()"
-          (change)="toggleSelectAll($event)"
-        />
-        <label for="selectAllCheckbox">{{ selectAllText }}</label>
+        <nsky-check
+        [disabled]="false"
+        [text]="selectAllText"
+        [id]="'checkbox'"
+        [name]="'checks'"
+        (change)="toggleSelectAll($event)"
+      ></nsky-check>
       </li>
       <hr>
       @for (item of data; track item.id) {
         <li class="ns-listItem ns-flex">
-          <input
-            type="checkbox"
-            id="{{ 'checkbox_' + item.id }}"
-            [checked]="isSelected(item)"
-            (change)="toggleSelection(item)"
-          />
-          <label for="{{ 'checkbox_' + item.id }}" class="truncate-text" [title]="item[dataOption]">
-            {{ item[dataOption] }}
-          </label>
+          <nsky-check
+          [disabled]="false"
+          [text]="item[dataOption]"
+          [id]="'checkbox_' + item.id "
+          [name]="'checks'"
+          [checked]="isSelected(item)"
+          (change)="toggleSelection(item);"
+          [for]="'checkbox_' + item.id"
+        ></nsky-check>
         </li>
       }
     </ul>

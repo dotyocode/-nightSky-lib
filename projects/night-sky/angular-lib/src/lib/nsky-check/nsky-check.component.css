@@ -1,0 +1,86 @@
+.input-text {
+  color: #ffffff;
+  background: #ffffff;
+  width: 18px !important;
+  height: 18px !important;
+  border: 1px solid #d1d5db;
+  transition: all ease 0.2s;
+  appearance: none;
+  border-radius: 3px;
+  outline: none;
+  text-align: center;
+}
+
+.input-text:checked {
+  border: 1px solid var(--blue-400);
+  background-color: var(--blue-700);
+}
+
+.input-text:checked::before {
+  content: "✔";
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.input-text:focus {
+  border: 1px solid var(--blue-600);
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}
+
+.input-text:disabled {
+  background: var(--grey-500);
+}
+
+.input-error {
+  color: #ffffff;
+  background: #ffffff;
+  width: 18px !important;
+  height: 18px !important;
+  border: 1px solid var(--red-500);
+  transition: all ease 0.2s;
+  appearance: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.input-error:checked {
+  border: 1px solid var(--blue-400);
+  background-color: var(--blue-700);
+}
+
+.input-error:checked::before {
+  content: "✔";
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.input-error:focus {
+  border: 1px solid var(--blue-600);
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}
+
+.input-text:disabled {
+  background: var(--grey-500);
+}
+
+.error-message {
+  color: var(--red-500);
+}
+
+.input-div {
+  display: grid;
+}
+
+.ns-nowrap {
+  white-space: nowrap;
+}
